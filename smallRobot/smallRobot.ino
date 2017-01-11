@@ -13,6 +13,9 @@ int WAIT_TIME_FOR_CARD_PROCESSING = 5000;
 #define WRIST_PIN    9  //zapjast'e
 #define GRIPPER_PIN  10 //connected to Rotation Knob / Potentiometer # 2
 
+#define WAG_ROBOT_ROTATION_PIN  11 
+
+
 #define BASE             0     //connected to Rotation Knob / Potentiometer # 1
 #define BASE_MIN       600     //full counterclockwise for RobotGeek 180 degree servo
 #define BASE_MAX      2400     //full clockwise for RobotGeek 180 degree servo
@@ -34,6 +37,7 @@ Servo ELBOW_SERVO;       //elbow servo - RobotGeek Servo
 Servo WRIST_SERVO;       //wrist servo - RobotGeek Servo
 Servo GRIPPER_SERVO;     //gripper servo - 9g servo
 
+Servo WAG_SERVO;
 
 //present positions of the servos 
 int Base     = CENTERED;    //holds the present position of the Base servo, starts at 1500 (centered)
@@ -60,6 +64,9 @@ void setup() {
   WRIST_SERVO.attach(WRIST_PIN, WRIST_MIN, WRIST_MAX);
   GRIPPER_SERVO.attach(GRIPPER_PIN, GRIPPER_MIN, GRIPPER_MAX);
 
+  WAG_SERVO.attach(WAG_ROBOT_ROTATION_PIN, 10, 180);
+  WAG_SERVO.write(175);
+
   mainMenu();
 
 }
@@ -81,6 +88,7 @@ void loop() {
       case '4': sweep(4); break;
       case '5': sweep(5); break;
       case '6': sweep(6); break;
+      case '7': wag(); break;
       }
 
     }
@@ -239,7 +247,17 @@ void mainMenu()
   Serial.println("3. Sweep card from slot 3");
   Serial.println("4. Sweep card from slot 4");
   Serial.println("5. Sweep card from slot 5");
+  Serial.println("6. Sweep card from slot 6");
+  Serial.println("7. Wag card ");
   Serial.println("###########################");
+  }
+
+void wag()
+{
+  WAG_SERVO.write(175);
+  WAG_SERVO.write(20);
+  delay(500);
+  WAG_SERVO.write(175);
   }
 
 void takeCard(int slot)
@@ -311,4 +329,19 @@ void returnCard(int slot)
                 }
       }
 
-      
+
+ void moveWagServo(Servo servo, int startPosition, int endPosition, int moveDelay)
+    {
+      if(startPosition < endPosition)
+          for(int i = startPosition; i <= endPosition; i++)
+              {
+                servo.write(i);
+                delay(moveDelay);
+                }
+      else
+      for(int i = startPosition; i >= endPosition; i--)
+              {
+                servo.write(i);
+                delay(moveDelay);
+                }
+      }     
