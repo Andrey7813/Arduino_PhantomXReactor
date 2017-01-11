@@ -329,19 +329,3 @@ void returnCard(int slot)
                 }
       }
 
-
- void moveWagServo(Servo servo, int startPosition, int endPosition, int moveDelay)
-    {
-      if(startPosition < endPosition)
-          for(int i = startPosition; i <= endPosition; i++)
-              {
-                servo.write(i);
-                delay(moveDelay);
-                }
-      else
-      for(int i = startPosition; i >= endPosition; i--)
-              {
-                servo.write(i);
-                delay(moveDelay);
-                }
-      }     
