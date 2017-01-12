@@ -87,9 +87,7 @@ void loop() {
       case '3': sweep(3); break;
       case '4': sweep(4); break;
       case '5': sweep(5); break;
-      case '6': sweep(6); break;
-      case '7': wag(); break;
-      }
+     }
 
     }
 
@@ -247,8 +245,6 @@ void mainMenu()
   Serial.println("3. Sweep card from slot 3");
   Serial.println("4. Sweep card from slot 4");
   Serial.println("5. Sweep card from slot 5");
-  Serial.println("6. Sweep card from slot 6");
-  Serial.println("7. Wag card ");
   Serial.println("###########################");
   }
 
@@ -266,17 +262,17 @@ void takeCard(int slot)
   switch(slot)
   {
     case 1: base_angle = 608; break;
-    case 2: base_angle = 704; break;//708
-    case 3: base_angle = 793; break; //797
+    case 2: base_angle = 704; break;
+    case 3: base_angle = 793; break; 
     case 4: base_angle = 900; break;
-    case 5: base_angle = 995; break;
+    case 5: base_angle = 994; break;
     }
   
   moveServo(BASE_SERVO, cur_Base, base_angle, 2); cur_Base = base_angle;
   moveServo(GRIPPER_SERVO, Gripper, 2000, 2);
   moveServo(ELBOW_SERVO, cur_Elbow, 1590, 2); cur_Elbow = 1590;
   moveServo(WRIST_SERVO, cur_Wrist, 730, 2); cur_Wrist = 730;
-  moveServo(SHOULDER_SERVO, cur_Shoulder, 1730, 2); cur_Shoulder = 1730;
+  moveServo(SHOULDER_SERVO, cur_Shoulder, 1720, 2); cur_Shoulder = 1720;//1730
   moveServo(GRIPPER_SERVO, 1800, 1100, 2);
   moveServo(SHOULDER_SERVO, cur_Shoulder, Shoulder, 2); cur_Shoulder = Shoulder;
 }
@@ -286,17 +282,17 @@ void returnCard(int slot)
   int base_angle = 0;
   switch(slot)
   {
-    case 1: base_angle = 608; break;//610
+    case 1: base_angle = 608; break;
     case 2: base_angle = 704; break;
     case 3: base_angle = 793; break;
     case 4: base_angle = 900; break;
-    case 5: base_angle = 995; break;
+    case 5: base_angle = 994; break;
     }
     
   moveServo(BASE_SERVO, cur_Base, base_angle, 2); cur_Base = base_angle;
   moveServo(ELBOW_SERVO, cur_Elbow, 1590, 2); cur_Elbow = 1590;
   moveServo(WRIST_SERVO, cur_Wrist, 685, 2); cur_Wrist = 685; //690
-  moveServo(SHOULDER_SERVO, cur_Shoulder, 1730, 2); cur_Shoulder = 1730;
+  moveServo(SHOULDER_SERVO, cur_Shoulder, 1720, 2); cur_Shoulder = 1720; //1730
   moveServo(GRIPPER_SERVO, 1100, 2000, 2);
 
   int k_elbow = cur_Elbow;
