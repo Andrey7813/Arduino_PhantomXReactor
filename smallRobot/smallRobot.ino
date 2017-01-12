@@ -87,6 +87,7 @@ void loop() {
       case '3': sweep(3); break;
       case '4': sweep(4); break;
       case '5': sweep(5); break;
+      case '6': wag(); break;
      }
 
     }
@@ -245,6 +246,7 @@ void mainMenu()
   Serial.println("3. Sweep card from slot 3");
   Serial.println("4. Sweep card from slot 4");
   Serial.println("5. Sweep card from slot 5");
+  Serial.println("6. Wag card ");
   Serial.println("###########################");
   }
 
