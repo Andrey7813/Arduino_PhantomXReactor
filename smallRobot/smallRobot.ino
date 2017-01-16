@@ -64,6 +64,8 @@ void setup() {
   WRIST_SERVO.attach(WRIST_PIN, WRIST_MIN, WRIST_MAX);
   GRIPPER_SERVO.attach(GRIPPER_PIN, GRIPPER_MIN, GRIPPER_MAX);
 
+  moveServo(BASE_SERVO, cur_Base, 600, 2); cur_Base = 600;
+
   WAG_SERVO.attach(WAG_ROBOT_ROTATION_PIN, 10, 180);
   WAG_SERVO.write(175);
 
