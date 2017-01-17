@@ -121,8 +121,8 @@ void move_all_servos_to_default_position()
    cur_Elbow = 1500; 
    delay(300);
    
-   moveServo(WRIST_SERVO, cur_Wrist, 1500, 2);
-   cur_Wrist = 1500;
+   moveServo(WRIST_SERVO, cur_Wrist, 1200, 2);
+   cur_Wrist = 1200;
    delay(300);
    
    GRIPPER_SERVO.writeMicroseconds(1100);
